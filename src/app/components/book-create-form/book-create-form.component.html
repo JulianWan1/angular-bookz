@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>
+  {{ mode === "create" ? "Create Book" : "Update Book" }}
+</h2>
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+  <mat-form-field>
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id" [readonly]="mode === 'update'" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Version</mat-label>
+    <input matInput type="number" formControlName="version" />
+  </mat-form-field>
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="bookForm.invalid"
+      type="submit"
+    >
+      {{ mode === "create" ? "Create" : "Update" }}
+    </button>
+  </div>
+</form>
